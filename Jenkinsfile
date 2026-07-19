@@ -57,7 +57,7 @@ pipeline {
             // }
             when {
                 expression {
-                    "$params.DEPLOY"
+                    "$params.DEPLOY" == "true"
                 }
             }
 
