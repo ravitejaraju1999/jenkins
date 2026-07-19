@@ -15,7 +15,7 @@ pipeline {
     }
     parameters {
         string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Branch to build')
-        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run tests after build')
+        booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Deploy the application after build')
         choice(name: 'DEPLOY_ENV', choices: ['dev', 'staging', 'production'], description: 'Select the deployment environment')
         password(name: 'DEPLOY_PASSWORD', defaultValue: '', description: 'Password for deployment')
     }
@@ -31,7 +31,7 @@ pipeline {
                        env
 
                        echo "Building branch: ${params.BRANCH_NAME}"
-                       echo "Running tests: ${params.RUN_TESTS}"
+                       echo "Deploying: ${params.DEPLOY}"
                        echo "Deploying to: ${params.DEPLOY_ENV}"
                        echo "Deployment password: ${params.DEPLOY_PASSWORD}"
 
@@ -47,14 +47,21 @@ pipeline {
             }
         }
         stage('Deploy') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "alice,bob"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+            // input {
+            //     message "Should we continue?"
+            //     ok "Yes, we should."
+            //     submitter "alice,bob"
+            //     parameters {
+            //         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+            //     }
+            // }
+            when {
+                expression {
+                    "$params.DEPLOY"
                 }
             }
+
+
             steps {
                 echo 'Deploying...'
             }
