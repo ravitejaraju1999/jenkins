@@ -9,7 +9,8 @@ pipeline {
         COURSE = "Jenkins Pipeline"
     }
     options {
-        timeout(time: 10, unit: 'SECONDS') // Set a timeout for the entire pipeline
+        timeout(time: 10, unit: 'MINUTES') // Set a timeout for the entire pipeline
+        disableConcurrentBuilds() // Prevent concurrent builds of the same job
     }
 
     stages {
@@ -18,7 +19,7 @@ pipeline {
                 script {
                     sh """
                        echo "Building the project for ${COURSE}"
-                       sleep 10
+                       #sleep 10
 
                     """
                     
