@@ -18,6 +18,7 @@ pipeline {
         choice(name: 'DEPLOY_ENV', choices: ['dev', 'staging', 'production'], description: 'Select the deployment environment')
         password(name: 'DEPLOY_PASSWORD', defaultValue: '', description: 'Password for deployment')
     }
+    // Define the stages of the pipeline
 
     stages {
         stage('Build') {
