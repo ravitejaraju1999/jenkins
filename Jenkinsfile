@@ -19,7 +19,7 @@ pipeline {
                 script {
                     sh """
                        echo "Building the project for ${COURSE}"
-                       #sleep 10
+                       sleep 10
 
                     """
                     
