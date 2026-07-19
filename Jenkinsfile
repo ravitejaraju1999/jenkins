@@ -8,6 +8,9 @@ pipeline {
         // Define environment variables here
         COURSE = "Jenkins Pipeline"
     }
+    options {
+        timeout(time: 10, unit: 'seconds') // Set a timeout for the entire pipeline
+    }
 
     stages {
         stage('Build') {
@@ -15,6 +18,7 @@ pipeline {
                 script {
                     sh """
                        echo "Building the project for ${COURSE}"
+                       sleep 10
 
                     """
                     
@@ -44,6 +48,9 @@ pipeline {
         }
         failure{
             echo 'This will run only if the pipeline fails.'
+        }
+        aborted{
+            echo 'The pipeline is aborted.'
         }
     }
 }
