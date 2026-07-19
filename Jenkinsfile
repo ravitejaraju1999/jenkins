@@ -4,10 +4,21 @@ pipeline {
             label 'AGENT-1'
         }
     }
+    environment {
+        // Define environment variables here
+        COURSE = "Jenkins Pipeline"
+    }
 
     stages {
         stage('Build') {
             steps {
+                script {
+                    sh """
+                       echo "Building the project for ${COURSE}"
+
+                    """
+                    
+                }
                 echo 'Building...'
             }
         }
