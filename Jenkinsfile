@@ -9,7 +9,7 @@ pipeline {
         COURSE = "Jenkins Pipeline"
     }
     options {
-        timeout(time: 10, unit: 'seconds') // Set a timeout for the entire pipeline
+        timeout(time: 10, unit: 'SECONDS') // Set a timeout for the entire pipeline
     }
 
     stages {
