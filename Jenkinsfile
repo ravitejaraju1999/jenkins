@@ -26,6 +26,12 @@ pipeline {
                     sh """
                        echo "Building the project for ${COURSE}"
                        sleep 10
+                       env
+
+                       echo "Building branch: ${params.BRANCH_NAME}"
+                       echo "Running tests: ${params.RUN_TESTS}"
+                       echo "Deploying to: ${params.DEPLOY_ENV}"
+                       echo "Deployment password: ${params.DEPLOY_PASSWORD}"
 
                     """
                     
