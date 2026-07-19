@@ -1,4 +1,5 @@
 pipeline {
+    // this are pre build sesion
     agent {
         node {
             label 'AGENT-1'
